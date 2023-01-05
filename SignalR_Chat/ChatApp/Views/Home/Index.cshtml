@@ -1,0 +1,149 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<Message>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <title>TMS CHAT</title>
+</head>
+<body>
+
+    <div class="blocker">
+    </div>
+
+    <input type="hidden" id="groupName" value="@ViewBag.Group" />
+
+    <div class="messages-area">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-3 groups-wrapper">
+
+                    <div class="groups">
+
+                        <a href="/?group=Ümumi" class="chat-item @(ViewBag.Group== "Ümumi" ? "active": "")">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md-3">
+                                    <img src="~/css/pattern.jpg" alt="" />
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <h3>
+                                        Ümumi
+
+                                    </h3>
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                        <a href="/?group=Icraçılar" class="chat-item @(ViewBag.Group== "Icraçılar" ? "active": "")">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md-3">
+                                    <img src="~/css/pattern.jpg" alt="" />
+                                </div>
+
+                                <div class="col-md-9">
+                                    <h3>
+                                        Icraçılar
+
+                                    </h3>
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                        <a href="/?group=Developerlər" class="chat-item @(ViewBag.Group== "Developerlər" ? "active": "")">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-md-3">
+                                    <img src="~/css/pattern.jpg" alt="" />
+                                </div>
+
+                                <div class="col-md-9">
+                                    <h3>
+                                        Developerlər
+
+                                    </h3>
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-9">
+
+                    <div id="messages-container">
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="message"> <div class="message-wrapper"> <p class="username" style="color:#@item.userColor">@item.username</p><p class="message-text"> @item.message </p></div></div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="message-send-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-9 col-md-11">
+                    <div class="form-floating">
+                        <input type="text"
+                               class="form-control"
+                               id="newMessage"
+                               placeholder="Message" />
+                        <label for="newMessage">Message</label>
+                    </div>
+                </div>
+
+                <div class="col-3 col-md-1 text-end">
+                    <button type="button" id="sendButton" class="btn btn-primary btn-lg rounded-circle">
+                        <i class="bi bi-send"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    <script src="~/js/signalr.min.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
+</html>
+
